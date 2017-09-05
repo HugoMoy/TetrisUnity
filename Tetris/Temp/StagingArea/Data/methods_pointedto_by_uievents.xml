@@ -1,0 +1,7 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="managebuttons">
+			<method name="NewGameButton"/>
+		</type>
+	</assembly>
+</linker>

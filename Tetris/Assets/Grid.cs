@@ -65,13 +65,18 @@ public class Grid : MonoBehaviour {
 		return true;
 	}
 
-	public static void deleteFullRows() {
+	public static int deleteFullRows() {
+		int lines = 0;
+
 		for (int y = 0; y < h; ++y) {
 			if (isRowFull(y)) {
+				lines++;
 				deleteRow(y);
 				decreaseRowsAbove(y+1);
 				--y;
 			}
 		}
+
+		return lines;
 	}
 }

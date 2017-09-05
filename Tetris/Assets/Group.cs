@@ -10,13 +10,17 @@ public class Group : MonoBehaviour {
 	void Start() {
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) {
-			Debug.Log("GAME OVER");
+//			Debug.Log("GAME OVER");
+			FindObjectOfType<PauseScript>().setGameover(true);
 			Destroy(gameObject);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update() {
+		if ((int)transform.position.x >= 12 && (int)transform.position.y >= 0)
+			return;
+
 		// Move Left
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			// Modify position
@@ -69,10 +73,12 @@ public class Group : MonoBehaviour {
 				transform.position += new Vector3(0, 1, 0);
 
 				// Clear filled horizontal lines
-				Grid.deleteFullRows();
+				int lines =	Grid.deleteFullRows();
+				Score.addPoints(lines);
 
 				// Spawn next Group
 				FindObjectOfType<Spawner>().spawnNext();
+				FindObjectOfType<NextGroup>().showNextGroup();
 
 				// Disable script
 				enabled = false;
@@ -82,7 +88,11 @@ public class Group : MonoBehaviour {
 		}
 	}
 
-	bool isValidGridPos() {        
+	bool isValidGridPos() {
+		//Checking if the group is in the NextGroupPanel
+		if ((int)transform.position.x >= 12 && (int)transform.position.y >= 0)
+			return true;
+
 		foreach (Transform child in transform) {
 			Vector2 v = Grid.roundVec2(child.position);
 
