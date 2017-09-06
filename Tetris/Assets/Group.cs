@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Group : MonoBehaviour {
 	// Time since last gravity tick
@@ -11,8 +12,9 @@ public class Group : MonoBehaviour {
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) {
 //			Debug.Log("GAME OVER");
-			FindObjectOfType<PauseScript>().setGameover(true);
+//			FindObjectOfType<PauseScript>().setGameover(true);
 			Destroy(gameObject);
+			SceneManager.LoadScene("GameoverScene");
 		}
 	}
 	
@@ -105,6 +107,7 @@ public class Group : MonoBehaviour {
 				Grid.grid[(int)v.x, (int)v.y].parent != transform)
 				return false;
 		}
+
 		return true;
 	}
 

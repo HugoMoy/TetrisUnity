@@ -38,6 +38,7 @@ public class Spawner : MonoBehaviour {
 		int i = Random.Range (0, groups.Length);
 		if (nextGroup == null) {
 			Instantiate (groups [i], transform.position, Quaternion.identity);
+			i = Random.Range (0, groups.Length);
 		} else {
 			Instantiate (nextGroup, transform.position, Quaternion.identity);
 		}

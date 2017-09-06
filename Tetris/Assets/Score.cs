@@ -13,17 +13,20 @@ public class Score : MonoBehaviour {
 	private static int pointsForFourLine = 1200;
 	private static int level = 1;
 	private static int pointsTotal = 0;
-
+	private static int nextLevel = 500;
 	Text instruction;
 	// Use this for initialization
 	void Start () {
+		level = 1;
+		pointsTotal = 0;
 		instruction = GetComponent<Text>();
-		instruction.text = "Score: 0";
+		instruction.text = "Score: " + pointsTotal;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		instruction.text = "Score: " + pointsTotal;
+		instruction.text = "Level: "+ level + "  Score: " + pointsTotal;
 	}
 
 	public static void addPoints(int lines) {
@@ -45,6 +48,15 @@ public class Score : MonoBehaviour {
 			pointsTotal += 0;
 			break;
 		}			
+
+		if (pointsTotal > nextLevel) {
+			level++;
+			nextLevel = 500 * level;
+		}
+	}
+
+	public static void reset() {
+		pointsTotal = 0;
 	}
 
 	public static int getPointsTotal() {

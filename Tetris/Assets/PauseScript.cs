@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseScript : MonoBehaviour {
 	GameObject[] pauseObjects;
 	GameObject[] gameplayObjects;
-	GameObject[] gameoverObjects;
 
 	bool isGameover = false;
 	bool gameoverisActivated = false;
@@ -16,9 +15,7 @@ public class PauseScript : MonoBehaviour {
 		Time.timeScale = 1;
 		pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
 		gameplayObjects = GameObject.FindGameObjectsWithTag("Gameplay");
-		gameoverObjects = GameObject.FindGameObjectsWithTag("Gameover");
 		hidePaused();
-		hideGameover();
 
 		isGameover = false;
 		gameoverisActivated = false;
@@ -31,7 +28,7 @@ public class PauseScript : MonoBehaviour {
 
 		if (isGameover) {
 			gameoverisActivated = true;
-			showGameover();
+			hideGameplay();
 
 			if(Input.GetKeyDown(KeyCode.R)) {
 				SceneManager.LoadScene("StartScene");
@@ -53,6 +50,12 @@ public class PauseScript : MonoBehaviour {
 		}
 	}
 		
+	public void unpaused() {
+		Time.timeScale = 1;
+		hidePaused();
+		return;
+	}
+
 	public void setGameover(bool value) {
 		isGameover = value;
 	}
@@ -80,6 +83,7 @@ public class PauseScript : MonoBehaviour {
 			g.SetActive(true);
 		}
 
+		gameplayObjects = GameObject.FindGameObjectsWithTag("Gameplay");
 		foreach(GameObject g in gameplayObjects){
 			g.SetActive(false);
 		}
@@ -96,20 +100,10 @@ public class PauseScript : MonoBehaviour {
 		}
 	}
 
-	public void hideGameover(){
-		foreach(GameObject g in gameoverObjects){
-			g.SetActive(false);
-		}
-	}
-
-	public void showGameover(){
+	public void hideGameplay(){
 		gameplayObjects = GameObject.FindGameObjectsWithTag("Gameplay");
 		foreach(GameObject g in gameplayObjects){
 			g.SetActive(false);
-		}
-
-		foreach(GameObject g in gameoverObjects){
-			g.SetActive(true);
 		}
 	}
 
