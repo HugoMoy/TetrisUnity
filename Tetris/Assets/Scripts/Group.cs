@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Group : MonoBehaviour {
 	// Time since last gravity tick
 	float lastFall = 0;
+	float lastAcc = 0;
 
 	// Use this for initialization
 	void Start() {
@@ -61,9 +62,8 @@ public class Group : MonoBehaviour {
 				transform.Rotate(0, 0, 90);
 		}
 		// Move Downwards and Fall
-		else if ((Input.GetKeyDown(KeyCode.DownArrow) ||
-			Time.time - lastFall >= 1) || (Input.GetKey(KeyCode.DownArrow) &&
-			Time.time - lastFall >= 0.2)) {
+		else if ((Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1) || 
+				(Input.GetKey(KeyCode.DownArrow) &&	Time.time - lastAcc >= 0.1)) {
 			// Modify position
 			transform.position += new Vector3(0, -1, 0);
 
@@ -86,11 +86,11 @@ public class Group : MonoBehaviour {
 				// Disable script
 				enabled = false;
 			}
-			if ((Input.GetKey(KeyCode.DownArrow) &&
-			Time.time - lastFall >= 0.2)) {
+			if ((Input.GetKey(KeyCode.DownArrow) && Time.time - lastAcc >= 0.1)) {
+				lastAcc = Time.time;
 			}
 			else {
-			lastFall = Time.time;
+				lastFall = Time.time;
 			}
 		}
 	}

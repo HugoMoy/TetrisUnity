@@ -45,32 +45,32 @@ public class Spawner : MonoBehaviour {
 
 			//Debug.Log("Position = "+transform.position);
 			GameObject a = Instantiate (nextGroup, transform.position, Quaternion.identity);
-			Transform b0 = a.transform.GetChild(0);
-			Transform b1 = a.transform.GetChild(1);
-			Transform b2 = a.transform.GetChild(2);
-			Transform b3 = a.transform.GetChild(3);
-			// Debug.Log(b0.position);
-			// Debug.Log(b1.position);
-			// Debug.Log(b2.position);
-			// Debug.Log(b3.position);
+			// Transform b0 = a.transform.GetChild(0);
+			// Transform b1 = a.transform.GetChild(1);
+			// Transform b2 = a.transform.GetChild(2);
+			// Transform b3 = a.transform.GetChild(3);
+			// // Debug.Log(b0.position);
+			// // Debug.Log(b1.position);
+			// // Debug.Log(b2.position);
+			// // Debug.Log(b3.position);
 
-			Transform[,] alpha =FindObjectOfType<Group>().getGrid();
-			if(alpha[(int)b0.position.x, (int)b0.position.y] != null ){
-				SceneManager.LoadScene("GameoverScene");
-				Debug.Log("GameOver");
-			}
-			if(alpha[(int)b1.position.x, (int)b1.position.y] != null ){
-				SceneManager.LoadScene("GameoverScene");
-				Debug.Log("GameOver");
-			}
-			if(alpha[(int)b2.position.x, (int)b2.position.y] != null ){
-				SceneManager.LoadScene("GameoverScene");
-				Debug.Log("GameOver");
-			}
-			if(alpha[(int)b3.position.x, (int)b3.position.y] != null ){
-				SceneManager.LoadScene("GameoverScene");
-				Debug.Log("GameOver");
-			}
+			// Transform[,] alpha =FindObjectOfType<Group>().getGrid();
+			// if(alpha[(int)b0.position.x, (int)b0.position.y] != null ){
+			// 	SceneManager.LoadScene("GameoverScene");
+			// 	Debug.Log("GameOver");
+			// }
+			// if(alpha[(int)b1.position.x, (int)b1.position.y] != null ){
+			// 	SceneManager.LoadScene("GameoverScene");
+			// 	Debug.Log("GameOver");
+			// }
+			// if(alpha[(int)b2.position.x, (int)b2.position.y] != null ){
+			// 	SceneManager.LoadScene("GameoverScene");
+			// 	Debug.Log("GameOver");
+			// }
+			// if(alpha[(int)b3.position.x, (int)b3.position.y] != null ){
+			// 	SceneManager.LoadScene("GameoverScene");
+			// 	Debug.Log("GameOver");
+			// }
 			
 		}
 

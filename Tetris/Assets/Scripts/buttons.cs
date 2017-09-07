@@ -15,7 +15,6 @@ public class buttons : MonoBehaviour {
 
 	public void Unpaused() {
 		FindObjectOfType<PauseScript>().unpaused();
-
 	}
 
 	public void ExitGameButton(){
